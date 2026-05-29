@@ -19,14 +19,14 @@ rag_knowledge_base/
 
 rag_mcp_server.py            # MCP服务器（提供工具接口）
 build_knowledge_base.py      # 知识库构建脚本
-rag_mcp_config.json          # MCP服务器配置
+rag_mcp_config.example.json  # MCP配置模板（复制为 rag_mcp_config.json）
 rag_requirements.txt         # Python依赖
 ```
 
 ## 安装依赖
 
 ```bash
-cd /disk1/users/user/ollama_mcp
+cd <PROJECT_ROOT>
 pip install -r rag_requirements.txt
 ```
 
@@ -45,7 +45,7 @@ ollama pull nomic-embed-text
 ### 2. 运行知识库构建脚本
 
 ```bash
-cd /disk1/users/user/ollama_mcp
+cd <PROJECT_ROOT>
 
 # 基本构建
 python3 build_knowledge_base.py
@@ -79,7 +79,7 @@ python3 build_knowledge_base.py \
 
 ```bash
 # 方式A：使用提供的配置文件
-export MCP_CONFIG=/disk1/users/user/ollama_mcp/rag_mcp_config.json
+export MCP_CONFIG=<PROJECT_ROOT>/rag_mcp_config.json
 
 # 方式B：添加到你的MCP配置中
 # 编辑 ~/.config/mcp/servers.json 或你的配置文件
@@ -91,12 +91,8 @@ export MCP_CONFIG=/disk1/users/user/ollama_mcp/rag_mcp_config.json
   "mcpServers": {
     "rag-knowledge-base": {
       "command": "python3",
-      "args": [
-        "/disk1/users/user/ollama_mcp/rag_mcp_server.py"
-      ],
-      "env": {
-        "PYTHONPATH": "/disk1/users/user/ollama_mcp"
-      }
+      "args": ["<PROJECT_ROOT>/rag_mcp_server.py"],
+      "env": { "PYTHONPATH": "<PROJECT_ROOT>" }
     }
   }
 }
@@ -105,7 +101,7 @@ export MCP_CONFIG=/disk1/users/user/ollama_mcp/rag_mcp_config.json
 2. 启动ollmcp：
 
 ```bash
-cd /disk1/users/user/ollama_mcp
+cd <PROJECT_ROOT>
 python3 -m mcp_client_for_ollama.cli
 ```
 
@@ -247,7 +243,7 @@ ollama pull nomic-embed-text
 
 ```bash
 # 确保数据库目录可写
-chmod -R 755 /disk1/users/user/ollama_mcp/chroma_db
+chmod -R 755 <PROJECT_ROOT>/chroma_db
 ```
 
 ### 问题4：内存不足

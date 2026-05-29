@@ -147,13 +147,14 @@ def test_search(db_path: str = "./chroma_db"):
 
 if __name__ == "__main__":
     import argparse
-    
+    from rag_config import DOCUMENTS_DIR
+
     parser = argparse.ArgumentParser(description="构建RAG知识库")
     parser.add_argument(
         "--docs-dir",
         type=str,
-        default="/disk1/users/user/UltraRAG/data/extracted_readmes",
-        help="markdown文档目录路径"
+        default=DOCUMENTS_DIR,
+        help="markdown文档目录路径（也可用环境变量 RAG_DOCUMENTS_DIR）",
     )
     parser.add_argument(
         "--db-path",

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "ultrarag-knowledge-base": {
+      "command": "python",
+      "args": ["<PROJECT_ROOT>/ultrarag_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "<PROJECT_ROOT>",
+        "ULTRARAG_ROOT": "<ULTRARAG_ROOT>"
+      },
+      "description": "UltraRAG retriever (YAML-configured knowledge base)",
+      "timeout": 120,
+      "disabled": false
+    }
+  }
+}

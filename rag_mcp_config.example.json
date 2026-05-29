@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "rag-knowledge-base": {
+      "command": "python",
+      "args": ["<PROJECT_ROOT>/rag_mcp_server.py"],
+      "env": { "PYTHONPATH": "<PROJECT_ROOT>" }
+    }
+  }
+}

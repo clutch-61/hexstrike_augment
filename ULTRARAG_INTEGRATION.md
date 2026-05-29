@@ -7,21 +7,21 @@
 UltraRAG 的检索器依赖 `sentence-transformers`、`faiss` 等包。建议在当前环境运行：
 
 ```bash
-cd /disk1/users/user/ollama_mcp
+cd <PROJECT_ROOT>
 pip install -r ultrarag_requirements.txt
 ```
 
-> 💡 如果你希望使用 GPU，请按需安装对应的 `faiss-gpu-cuXX` 包，并设置 `ULTRARAG_GPU_IDS`。
+> 如果你希望使用 GPU，请按需安装对应的 `faiss-gpu-cuXX` 包，并设置 `ULTRARAG_GPU_IDS`。
 
 ## 2. 指定 UltraRAG 仓库位置
 
-默认路径为 `/disk1/users/user/UltraRAG`。若你的仓库位于其它位置，请在 shell 中设置：
+默认通过环境变量 `ULTRARAG_ROOT` 指向项目旁的 `UltraRAG` 目录。若仓库位于其它位置：
 
 ```bash
 export ULTRARAG_ROOT=/path/to/UltraRAG
 ```
 
-也可以在 `ultrarag_mcp_config.json` 里修改 `env.ULTRARAG_ROOT`。
+也可以复制 `ultrarag_mcp_config.example.json` 为 `ultrarag_mcp_config.json`，并修改其中的 `ULTRARAG_ROOT`。
 
 ## 3. 准备语料与索引
 
@@ -38,35 +38,35 @@ UltraRAG 的 `servers/retriever/parameter.yaml` 默认指向 `data/corpus_exampl
 ## 4. 启动 UltraRAG MCP Server
 
 ```bash
-cd /disk1/users/user/ollama_mcp
-python3 ultrarag_mcp_server.py
+cd <PROJECT_ROOT>
+python ultrarag_mcp_server.py
 ```
 
 成功后可在另一终端运行 `ollmcp`。
 
 ## 5. 在 Ollama MCP 客户端中启用
 
-使用提供的配置文件 `ultrarag_mcp_config.json`，或者将其中的条目合并至你自己的 `servers.json`：
+复制 `ultrarag_mcp_config.example.json` 为 `ultrarag_mcp_config.json`，将 `<PROJECT_ROOT>`、`<ULTRARAG_ROOT>` 替换为实际路径，然后：
+
+```bash
+ollmcp --servers-json <PROJECT_ROOT>/ultrarag_mcp_config.json
+```
+
+配置示例：
 
 ```json
 {
   "mcpServers": {
     "ultrarag-knowledge-base": {
-      "command": "python3",
-      "args": ["/disk1/users/user/ollama_mcp/ultrarag_mcp_server.py"],
+      "command": "python",
+      "args": ["<PROJECT_ROOT>/ultrarag_mcp_server.py"],
       "env": {
-        "PYTHONPATH": "/disk1/users/user/ollama_mcp",
-        "ULTRARAG_ROOT": "/disk1/users/user/UltraRAG"
+        "PYTHONPATH": "<PROJECT_ROOT>",
+        "ULTRARAG_ROOT": "<ULTRARAG_ROOT>"
       }
     }
   }
 }
-```
-
-然后运行：
-
-```bash
-ollmcp --servers-json /disk1/users/user/ollama_mcp/ultrarag_mcp_config.json
 ```
 
 ## 6. 可用工具
@@ -90,4 +90,3 @@ AI：调用 search_ultrarag_knowledge -> 返回多个段落及来源信息
 - **索引过期或损坏**：删除 `embedding/` 与 `index/` 目录后重新启动 `ultrarag_mcp_server.py`，它会自动重建。
 
 完成以上步骤后，Ollama 模型即可通过 MCP 工具直接调用 UltraRAG 提供的知识库，实现 “本地推理 + UltraRAG 检索” 的组合能力。
-
