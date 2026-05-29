@@ -1,9 +1,0 @@
-name: Local Config
-version: 1.0.0
-schema: v1
-models:
-  - name: llama-3.1-405b
-    provider: ollama
-    model: llama-3.1-405b
-    apiBase: "https://api.kwwai.top/v1"
-    apiKey: "sk-GRqb5FARVD6AQvYnGn5VWjOAreY03EizZ7Uu1cmWDBg6PsZA"

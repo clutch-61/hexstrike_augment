@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "hexstrike-ai": {
+      "command": "python",
+      "args": [
+        "<PROJECT_ROOT>/mcp/hexstrike_mcp.py",
+        "--server",
+        "http://localhost:8888"
+      ],
+      "env": {},
+      "timeout": 300,
+      "disabled": false
+    },
+    "rag-knowledge-base": {
+      "command": "python",
+      "args": ["<PROJECT_ROOT>/rag_mcp_server.py"],
+      "env": { "PYTHONPATH": "<PROJECT_ROOT>" },
+      "timeout": 60,
+      "disabled": false
+    }
+  }
+}

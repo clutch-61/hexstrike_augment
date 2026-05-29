@@ -1,4 +1,4 @@
-# Python-generated files
+# Python
 __pycache__/
 *.py[oc]
 build/
@@ -7,4 +7,37 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+venv/
+
+# IDE / local AI config (may contain API keys)
+.continue/
+
+# Sensitive or environment-specific (do not commit)
+123.txt
+docker_ps.txt
+docker_ps_ports.txt
+ports_created.txt
+cookies.txt
+*.log
+
+# HexStrike submodule local artifacts
+mcp/hexstrike-env/
+mcp/reports/
+mcp/__pycache__/
+mcp/*.json
+mcp/volatility3/
+
+# RAG / backups
+chroma_db/
+*.backup
+
+# Machine-specific MCP configs (use *.example.json as templates)
+hexstrike-mcp-config.json
+hexstrike-with-rag-config.json
+rag_mcp_config.json
+ultrarag_mcp_config.json
+
+# OS
+.DS_Store
+Thumbs.db

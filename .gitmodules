@@ -1,0 +1,4 @@
+[submodule "mcp"]
+	path = mcp
+	url = https://github.com/0x4m4/hexstrike-ai.git
+	branch = master

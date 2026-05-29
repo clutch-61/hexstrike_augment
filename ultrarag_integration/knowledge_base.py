@@ -65,7 +65,7 @@ class UltraRAGKnowledgeBase:
         root = (
             Path(override)
             if override
-            else Path(os.environ.get("ULTRARAG_ROOT", "/disk1/users/renbh/UltraRAG"))
+            else Path(os.environ.get("ULTRARAG_ROOT", Path.cwd() / "UltraRAG"))
         ).expanduser().resolve()
         if not root.exists():
             raise UltraRAGIntegrationError(

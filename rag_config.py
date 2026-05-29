@@ -1,7 +1,14 @@
 # RAG知识库配置文件
+import os
+from pathlib import Path
 
-# 文档目录路径
-DOCUMENTS_DIR = "/disk1/users/renbh/UltraRAG/data/extracted_readmes"
+_PROJECT_ROOT = Path(__file__).resolve().parent
+
+# 文档目录路径（可通过环境变量 RAG_DOCUMENTS_DIR 覆盖）
+DOCUMENTS_DIR = os.environ.get(
+    "RAG_DOCUMENTS_DIR",
+    str(_PROJECT_ROOT / "data" / "extracted_readmes"),
+)
 
 # 向量数据库路径
 DB_PATH = "./chroma_db"
