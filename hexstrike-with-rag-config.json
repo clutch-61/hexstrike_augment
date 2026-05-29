@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "hexstrike-ai": {
+      "command": "python3",
+      "args": [
+        "/disk1/users/renbh/ollama_mcp/mcp/hexstrike_mcp.py",
+        "--server",
+        "http://localhost:8888"
+      ],
+      "env": {
+        "PYTHONPATH": "/disk1/users/renbh/ollama_mcp/mcp/hexstrike-env/lib/python3.10/site-packages"
+      },
+      "description": "HexStrike AI v6.0 - Advanced Cybersecurity Automation Platform",
+      "timeout": 300,
+      "disabled": false
+    },
+    "rag-knowledge-base": {
+      "command": "python3",
+      "args": [
+        "/disk1/users/renbh/ollama_mcp/rag_mcp_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "/disk1/users/renbh/ollama_mcp"
+      },
+      "description": "RAG Security Knowledge Base - Palo Alto Networks Vulnerability Database",
+      "timeout": 60,
+      "disabled": false
+    }
+  }
+}
